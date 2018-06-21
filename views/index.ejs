@@ -1,0 +1,251 @@
+<doctype html="html">
+  <html lang="en">
+
+    <head>
+      <meta name="robots" content="index, follow"/>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+      <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=7">
+
+      <meta name="language" content="en-EN"/>
+      <meta name="author" content="Irfan Maulana"/>
+      <title>Oracle Project</title>
+
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.css"/>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link rel="stylesheet" href="stylesheets/style.css"/>
+      <link rel="stylesheet" href="stylesheets/weather-icons.css"/>
+    </head>
+    <body>
+      <header class="hero is-light">
+        <div class="hero-head">
+          <nav class="navbar has-shadow" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+              <a class="navbar-item is--brand">
+                dashboard="Dashboard"
+              </a>
+              <a class="navbar-item is-tab is-hidden-mobile is-active">
+                <span class="icon is-medium">
+                  <i class="fa fa-home"></i>
+                </span>Home</a>
+
+              <button class="button navbar-burger" data-target="navMenu">
+                <span></span>
+                <span></span>
+                <span></span>
+              </button>
+
+            </div>
+
+            <div class="navbar-menu navbar-end" id="navMenu">
+
+              <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">
+                  <figure class="image is-32x32" style="margin-right:.5em;">
+                    <img src="https://avatars2.githubusercontent.com/u/32497571?s=460&v=4">
+                  </figure>
+                  tpalzkill
+                </a>
+
+                <div class="navbar-dropdown is-right">
+                  <a class="navbar-item">
+                    <span class="icon is-small">
+                      <i class="fa fa-user-o"></i>
+                    </span>
+                    Profile
+                  </a>
+                  <hr class="navbar-divider">
+                  <a class="navbar-item">
+                    <span class="icon is-small">
+                      <i class="fa fa-power-off"></i>
+                    </span>
+                    Logout
+                  </a>
+                </div>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </header>
+
+      <div class="navandtiles">
+
+        <nav class="breadcrumb is-small" aria-label="breadcrumbs">
+          <ul>
+            <li>
+              <a href="#">Home</a>
+            </li>
+            <li class="is-active">
+              <a href="#" aria-current="page">Dashboard</a>
+            </li>
+          </ul>
+        </nav>
+        <div class="level">
+
+          <div class="level-left">
+            <div class="level-item">
+              <% let date = new Date() %>
+                <% date = date.toDateString() %>
+                  <div class="title has-text-primary">
+                    <i class="fa fa-tachometer"></i>
+                    <%=date%></div>
+                </div>
+              </div>
+              <div class="level-right">
+                <div class="level-item">
+                  <button type="button" class="button is-small">
+                    <%=date%>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="tiles">
+
+              <div class="tile is-ancestor">
+
+                <div class="tile notification is-warning is-4 is-parent">
+                  <div class="tile notification  is-child is-box">
+                    <div class="heading">Weather</div>
+
+                    <div class="title">Currently:
+                      <%= sendMe.weather.currentData.currentTemp %>℉
+                      <i class="wi wi-day-lightning"></i>
+                    </div>
+
+                    <div class="heading">Rain %</div>
+                    <div class="title is-5"><%= sendMe.weather.currentData.precipProbability %>
+                    </div>
+
+                    <div class="heading">Humidity %</div>
+                    <div class="title is-5 ">25%</div>
+
+                    <div class="heading">High / Low</div>
+                    <div class="title is-5"><%= sendMe.weather.dailyData.lowTemp %>
+                      /
+                      <%= sendMe.weather.dailyData.highTemp %>℉</div>
+
+                  </div>
+                </div>
+
+                <div class="tile notification is-primary is-4 is-parent">
+                  <div class="tile notification is-child is-box">
+                    <div class="heading has-text-dark">News</div>
+                    <% if (sendMe.news.imageA !== null) { %>
+                      <img class="image is-96x96" src="<%=sendMe.news.imageA%>" alt="articleImage"/>
+                    <% } %>
+                    <a href="<%=sendMe.news.urlA%>">
+                      <div class="title is-5 has-text-dark"><%= sendMe.news.articleA %></div>
+                    </a>
+
+                    <div class="heading has-text-dark">article</div>
+                    <div class="title is-7 has-text-dark"><%= sendMe.news.articleB %></div>
+
+                    <div class="heading has-text-dark">article b</div>
+                    <div class="title is-7 has-text-dark"><%= sendMe.news.articleC %></div>
+
+                  </div>
+                </div>
+
+                <div class="tile notification is-success is-4 is-parent">
+                  <div class="tile notification is-child is-box">
+                    <div class="heading has-text-dark">World Cup</div>
+                    <div class="heading has-text-dark">
+                      <%= sendMe.sports.gameAstatus %>
+                    </div>
+                    <div class="title is-5 has-text-dark"><%= sendMe.sports.homeTeamA %>
+                      <%= sendMe.sports.homeTeamScoreA %>
+                      -
+                      <%= sendMe.sports.awayTeamScoreA %>
+                      <%= sendMe.sports.awayTeamA %>
+
+                    </div>
+
+                    <div class="heading has-text-dark">
+                      <%= sendMe.sports.gameBstatus %>
+                    </div>
+                    <div class="title is-5 has-text-dark"><%= sendMe.sports.homeTeamB %>
+                      <%= sendMe.sports.homeTeamScoreB %>
+                      -
+                      <%= sendMe.sports.awayTeamScoreB %>
+                      <%= sendMe.sports.awayTeamB %>
+
+                    </div>
+
+                    <div class="heading has-text-dark">
+                      <%= sendMe.sports.gameCstatus %>
+                    </div>
+                    <div class="title is-5 has-text-dark"><%= sendMe.sports.homeTeamC %>
+                      <%= sendMe.sports.homeTeamScoreC %>
+                      -
+                      <%= sendMe.sports.awayTeamScoreC %>
+                      <%= sendMe.sports.awayTeamC %>
+
+                    </div>
+
+                    <!-- <div class="heading has-text-dark">article</div> <div class="title is-7 has-text-dark"><%= sendMe.sports.articleB %></div> <div class="heading has-text-dark">article b</div> <div class="title is-7 has-text-dark"><%= sendMe.sports.articleC
+                    %></div> -->
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="tile is-ancestor">
+
+                <div class="tile notification is-info is-parent">
+                  <div class="tile is-child box">
+                    <div class="heading">To-Do</div>
+                    <div id="app">
+
+                      <div class="container">
+                        <div class="content notification">
+
+                          <ul>
+
+                            <% for (var i = 0; i < sendMe.todos.length; i++) { %>
+                              <li>
+
+                                <%= sendMe.todos[i].text %>
+
+                                <a class="delete" v-on:click="deleteItem(index)"></a>
+                              </li>
+                            <% } %>
+                          </ul>
+                          <ul v-for="(todo, index) in todos">
+                            <div class="row">
+
+                              <li>
+                                {{todo.item}}
+                                <a class="delete" v-on:click="deleteItem(index)"></a>
+                              </li>
+
+                            </div>
+                          </ul class="has-dark-text">
+                          {{message}}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div class="field">
+                      <label class="label">Label</label>
+                      <div class="control">
+                        <input v-model="message" class="input" type="text" placeholder="Text input">
+                      </div>
+                      <p class="help">This is a help text</p>
+                    </div>
+                    <div class="control">
+                      <button v-on:click="addItem(message)" class="button is-primary">Submit</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.4/vue.min.js"></script>
+          <script type="module" src="/javascripts/vuecomp.js"></script>
+        </main>
+
+      </body>
+
+    </html>
